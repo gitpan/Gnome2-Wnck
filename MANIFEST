@@ -1,0 +1,23 @@
+ChangeLog
+LICENSE
+MANIFEST			This list of files
+META.yml			Module meta-data (added by MakeMaker)
+Makefile.PL
+Wnck.pm
+genmaps.pl
+maps
+t/Wnck.t
+t/WnckApplication.t
+t/WnckPager.t
+t/WnckScreen.t
+t/WnckTasklist.t
+t/WnckWindow.t
+t/WnckWorkspace.t
+wnck2perl.h
+xs/Wnck.xs
+xs/WnckApplication.xs
+xs/WnckPager.xs
+xs/WnckScreen.xs
+xs/WnckTasklist.xs
+xs/WnckWindow.xs
+xs/WnckWorkspace.xs

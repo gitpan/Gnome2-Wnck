@@ -1,0 +1,24 @@
+2003/10/11 20:31 (+0200) kaffeetisch
+
+	A LICENSE
+	A MANIFEST
+	A META.yml
+	A Makefile.PL
+	A Wnck.pm
+	A genmaps.pl
+	A maps
+	A t/Wnck.t
+	A t/WnckApplication.t
+	A t/WnckPager.t
+	A t/WnckScreen.t
+	A t/WnckTasklist.t
+	A t/WnckWindow.t
+	A t/WnckWorkspace.t
+	A wnck2perl.h
+        A xs/Wnck.t
+	A xs/WnckApplication.t
+	A xs/WnckPager.t
+	A xs/WnckScreen.t
+	A xs/WnckTasklist.t
+	A xs/WnckWindow.t
+	A xs/WnckWorkspace.t: Initial import.
