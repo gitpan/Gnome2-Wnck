@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.10 2004/07/26 21:47:20 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.11 2004/08/10 18:17:13 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -83,11 +83,14 @@ int
 wnck_window_get_pid (window)
 	WnckWindow *window
 
-# FIXME: no GType for WnckWindowType.
-###  WnckWindowType wnck_window_get_window_type (WnckWindow *window) 
-#WnckWindowType
-#wnck_window_get_window_type (window)
-#	WnckWindow *window
+#if WNCK_CHECK_VERSION (2, 7, 91) /* FIXME: 2.8 */
+
+##  WnckWindowType wnck_window_get_window_type (WnckWindow *window) 
+WnckWindowType
+wnck_window_get_window_type (window)
+	WnckWindow *window
+
+#endif
 
 ##  gboolean wnck_window_is_minimized (WnckWindow *window) 
 gboolean
@@ -128,6 +131,15 @@ wnck_window_is_skip_tasklist (window)
 gboolean
 wnck_window_is_sticky (window)
 	WnckWindow *window
+
+#if WNCK_CHECK_VERSION (2, 7, 90) /* FIXME: 2.8 */
+
+##  gboolean wnck_window_demands_attention (WnckWindow *window)
+gboolean
+wnck_window_demands_attention (window)
+	WnckWindow *window
+
+#endif
 
 ##  void wnck_window_set_skip_pager (WnckWindow *window, gboolean skip) 
 void

@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckTasklist.xs,v 1.6 2004/05/16 15:50:50 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckTasklist.xs,v 1.7 2004/08/10 18:17:13 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -63,7 +63,7 @@ wnck_tasklist_new (class, screen)
     C_ARGS:
 	screen
 
-#if WNCK_CHECK_VERSION(2,0,0)
+#if WNCK_CHECK_VERSION(2, 0, 0)
 
 ##  void wnck_tasklist_set_screen (WnckTasklist *tasklist, WnckScreen *screen) 
 void
@@ -93,12 +93,15 @@ wnck_tasklist_get_size_hint_list (tasklist)
 	for (i = 0; i < n_elements; i++)
 		PUSHs (sv_2mortal (newSViv (list[i])));
 
-# FIXME: no GType for WnckTasklistGroupingType.
-###  void wnck_tasklist_set_grouping (WnckTasklist *tasklist, WnckTasklistGroupingType grouping) 
-#void
-#wnck_tasklist_set_grouping (tasklist, grouping)
-#	WnckTasklist *tasklist
-#	WnckTasklistGroupingType grouping
+#if WNCK_CHECK_VERSION (2, 7, 91) /* FIXME: 2.8 */
+
+##  void wnck_tasklist_set_grouping (WnckTasklist *tasklist, WnckTasklistGroupingType grouping) 
+void
+wnck_tasklist_set_grouping (tasklist, grouping)
+	WnckTasklist *tasklist
+	WnckTasklistGroupingType grouping
+
+#endif
 
 ##  void wnck_tasklist_set_switch_workspace_on_unminimize (WnckTasklist *tasklist, gboolean switch_workspace_on_unminimize) 
 void

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2003 by the gtk2-perl team
+ * Copyright (C) 2003-2004 by the gtk2-perl team
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckPager.xs,v 1.4 2003/11/26 21:29:37 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckPager.xs,v 1.5 2004/08/10 18:17:13 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -29,7 +29,7 @@ wnck_pager_new (class, screen)
     C_ARGS:
 	screen
 
-#if WNCK_CHECK_VERSION(2,0,0)
+#if WNCK_CHECK_VERSION (2, 0, 0)
 
 ##  void wnck_pager_set_screen (WnckPager *pager, WnckScreen *screen) 
 void
@@ -51,12 +51,15 @@ wnck_pager_set_n_rows (pager, n_rows)
 	WnckPager *pager
 	int n_rows
 
-# FIXME: no GType for WnckPagerDisplayMode.
-###  void wnck_pager_set_display_mode (WnckPager *pager, WnckPagerDisplayMode mode) 
-#void
-#wnck_pager_set_display_mode (pager, mode)
-#	WnckPager *pager
-#	WnckPagerDisplayMode mode
+#if WNCK_CHECK_VERSION (2, 7, 91) /* FIXME: 2.8 */
+
+##  void wnck_pager_set_display_mode (WnckPager *pager, WnckPagerDisplayMode mode) 
+void
+wnck_pager_set_display_mode (pager, mode)
+	WnckPager *pager
+	WnckPagerDisplayMode mode
+
+#endif
 
 ##  void wnck_pager_set_show_all (WnckPager *pager, gboolean show_all_workspaces) 
 void

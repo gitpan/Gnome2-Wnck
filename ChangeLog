@@ -1,3 +1,26 @@
+2004/08/13 10:40 (+0200) kaffeetisch
+
+	* NEWS, Wnck.pm: Version 0.07.
+
+2004/08/10 20:07 (+0200) kaffeetisch
+
+	* t/WnckApplication.t, t/WnckScreen.t, t/WnckWindow.t: Add new
+	tests for several methods.
+
+	* t/Wnck.t, xs/Wnck.xs: Remove the binding for
+	wnck_gtk_window_set_dock_type.  It was intrusive and very obscure.
+	This is an API break.  If you used that method please scream and
+	I'll add it again.
+
+	* maps, t/WnckPager.t, xs/WnckPager.xs: Bind and test
+	set_display_mode.
+
+	* maps, t/WnckTasklist.t, xs/WnckTasklist.xs: Bind and test
+	set_grouping.
+
+	* maps, t/WnckWindow.t, xs/WnckWindow.xs: Bind and test
+	get_window_type and demands_attention.
+
 2004/07/26 23:39 (+0200) kaffeetisch
 
 	* Makefile.PL, WnckWindow.xs: Fix build when compiling against
