@@ -1,3 +1,27 @@
+2005/02/24	kaffeetisch
+
+	* META.yml, NEWS, Wnck.pm: Version 0.10.
+
+2005/02/24	kaffeetisch
+
+	* t/WnckWindow.t, xs/WnckWindow.xs: Bind and test
+	wnck_window_get_sort_order,
+	wnck_window_or_transient_demands_attention, and
+	wnck_window_transient_is_active.
+
+	* t/WnckWindow.t, t/WnckWorkspace.t, xs/WnckWindow.xs
+	xs/WnckWorkspace.xs: Accomodate for upstream API changes: Add a
+	timeout parameter to wnck_window_unminimize, wnck_window_activate,
+	wnck_window_activate_transient, wnck_workspace_activate.  Don't
+	include window-menu.h and don't bind wnck_create_window_menu if
+	they're not available anymore.
+
+2005/01/27 20:32 (+0100) kaffeetisch
+
+	* t/WnckWindow.t, xs/WnckWindow.xs: is_fullscreen and
+	set_fullscreen were made public in 2.8.0, not 2.4.0.  Fix the
+	version checks accordingly.
+
 2004/11/03 23:52 (+0100) kaffeetisch
 
 	* t/WnckWindow.t: Fix test failure reported by Yaakov Selkowitz.

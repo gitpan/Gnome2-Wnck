@@ -3,7 +3,7 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWorkspace.t,v 1.9 2004/04/20 15:25:11 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWorkspace.t,v 1.10 2005/02/24 18:16:17 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
@@ -39,7 +39,12 @@ SKIP: {
     ok(not $workspace -> is_virtual());
   }
 
-  $screen -> get_active_workspace() -> activate();
+  if (Gnome2::Wnck -> CHECK_VERSION(2, 9, 91)) { # FIXME: 2.10
+    $screen -> get_active_workspace() -> activate(time());
+  }
+  elsif (Gnome2::Wnck -> CHECK_VERSION(2, 0, 0)) {
+    $screen -> get_active_workspace() -> activate();
+  }
 
   # $workspace -> change_name(...);
 }

@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/wnck2perl.h,v 1.4 2004/04/24 15:15:31 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/wnck2perl.h,v 1.5 2005/02/24 18:15:37 kaffeetisch Exp $
  */
 
 #ifndef _WNCK2PERL_H_
@@ -25,12 +25,15 @@
 
 #include <libwnck/libwnck.h>
 #include <libwnck/window-action-menu.h>
-#include <libwnck/window-menu.h>
 
 #include "wnck2perl-version.h"
 
-#if WNCK_CHECK_VERSION (2,6,0)
-#include <libwnck/class-group.h>
+#if !WNCK_CHECK_VERSION (2, 9, 91) /* FIXME: 2.10 */
+# include <libwnck/window-menu.h>
+#endif
+
+#if WNCK_CHECK_VERSION (2, 6, 0)
+# include <libwnck/class-group.h>
 #endif
 
 #include "wnck2perl-autogen.h"

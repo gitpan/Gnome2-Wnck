@@ -1,3 +1,13 @@
+Overview of changes in Gnome2::Wnck 0.10
+========================================
+
+* Fix some version checks.
+* Accomodate for upstream API changes.
+* Add new API:
+  - wnck_window_get_sort_order,
+  - wnck_window_or_transient_demands_attention, and
+  - wnck_window_transient_is_active.
+
 Overview of changes in Gnome2::Wnck 0.09
 ========================================
 

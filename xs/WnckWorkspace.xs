@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWorkspace.xs,v 1.5 2004/04/20 15:25:12 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWorkspace.xs,v 1.6 2005/02/24 18:16:17 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -42,10 +42,22 @@ wnck_workspace_change_name (space, name)
 
 #endif
 
+#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+
+##  void wnck_workspace_activate (WnckWorkspace *space, guint32 timestamp) 
+void
+wnck_workspace_activate (space, timestamp)
+	WnckWorkspace *space
+	guint32 timestamp
+
+#else
+
 ##  void wnck_workspace_activate (WnckWorkspace *space) 
 void
 wnck_workspace_activate (space)
 	WnckWorkspace *space
+
+#endif
 
 #if WNCK_CHECK_VERSION(2,4,0)
 

@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.12 2004/10/25 18:50:28 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.14 2005/02/24 18:16:17 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -59,15 +59,6 @@ gulong
 wnck_window_get_xid (window)
 	WnckWindow *window
 
-#if WNCK_CHECK_VERSION (2,6,0)
-
-##  WnckClassGroup *wnck_window_get_class_group (WnckWindow *window)
-WnckClassGroup *
-wnck_window_get_class_group (window)
-	WnckWindow *window
-
-#endif
-
 ##  const char* wnck_window_get_session_id (WnckWindow *window)
 const char*
 wnck_window_get_session_id (window)
@@ -82,15 +73,6 @@ wnck_window_get_session_id_utf8 (window)
 int
 wnck_window_get_pid (window)
 	WnckWindow *window
-
-#if WNCK_CHECK_VERSION (2, 7, 91) /* FIXME: 2.8 */
-
-##  WnckWindowType wnck_window_get_window_type (WnckWindow *window) 
-WnckWindowType
-wnck_window_get_window_type (window)
-	WnckWindow *window
-
-#endif
 
 ##  gboolean wnck_window_is_minimized (WnckWindow *window) 
 gboolean
@@ -127,39 +109,10 @@ gboolean
 wnck_window_is_skip_tasklist (window)
 	WnckWindow *window
 
-#if WNCK_CHECK_VERSION (2, 4, 0)
-
-##  gboolean wnck_window_is_fullscreen (WnckWindow *window)
-gboolean
-wnck_window_is_fullscreen (window)
-	WnckWindow *window
-
-##  void wnck_window_set_fullscreen (WnckWindow *window, gboolean fullscreen)
-void
-wnck_window_set_fullscreen (window, fullscreen)
-	WnckWindow *window
-	gboolean fullscreen
-
-#endif
-
 ##  gboolean wnck_window_is_sticky (WnckWindow *window) 
 gboolean
 wnck_window_is_sticky (window)
 	WnckWindow *window
-
-#if WNCK_CHECK_VERSION (2, 8, 0)
-
-##  gboolean wnck_window_demands_attention (WnckWindow *window)
-gboolean
-wnck_window_demands_attention (window)
-	WnckWindow *window
-
-##  gboolean wnck_window_is_most_recently_activated (WnckWindow *window)
-gboolean
-wnck_window_is_most_recently_activated (window)
-	WnckWindow *window
-
-#endif
 
 ##  void wnck_window_set_skip_pager (WnckWindow *window, gboolean skip) 
 void
@@ -195,10 +148,22 @@ void
 wnck_window_minimize (window)
 	WnckWindow *window
 
+#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+
+##  void wnck_window_unminimize (WnckWindow *window, guint32 timestamp) 
+void
+wnck_window_unminimize (window, timestamp)
+	WnckWindow *window
+	guint32 timestamp
+
+#else
+
 ##  void wnck_window_unminimize (WnckWindow *window) 
 void
 wnck_window_unminimize (window)
 	WnckWindow *window
+
+#endif
 
 ##  void wnck_window_maximize (WnckWindow *window) 
 void
@@ -286,22 +251,46 @@ void
 wnck_window_unpin (window)
 	WnckWindow *window
 
+#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+
+##  void wnck_window_activate (WnckWindow *window, guint32 timestamp) 
+void
+wnck_window_activate (window, timestamp)
+	WnckWindow *window
+	guint32 timestamp
+
+#else
+
 ##  void wnck_window_activate (WnckWindow *window) 
 void
 wnck_window_activate (window)
 	WnckWindow *window
+
+#endif
 
 ##  gboolean wnck_window_is_active (WnckWindow *window) 
 gboolean
 wnck_window_is_active (window)
 	WnckWindow *window
 
-#if WNCK_CHECK_VERSION(2, 0, 0)
+#if WNCK_CHECK_VERSION (2, 0, 0)
+
+#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+
+##  void wnck_window_activate_transient (WnckWindow *window, guint32 timestamp) 
+void
+wnck_window_activate_transient (window, timestamp)
+	WnckWindow *window
+	guint32 timestamp
+
+#else
 
 ##  void wnck_window_activate_transient (WnckWindow *window) 
 void
 wnck_window_activate_transient (window)
 	WnckWindow *window
+
+#endif
 
 #endif
 
@@ -355,13 +344,71 @@ wnck_window_is_on_workspace (window, workspace)
 	WnckWindow *window
 	WnckWorkspace *workspace
 
-#if WNCK_CHECK_VERSION(2,4,0)
+#if WNCK_CHECK_VERSION(2, 4, 0)
 
 ##  gboolean wnck_window_is_in_viewport (WnckWindow *window, WnckWorkspace *workspace) 
 gboolean
 wnck_window_is_in_viewport (window, workspace)
 	WnckWindow *window
 	WnckWorkspace *workspace
+
+#endif
+
+#if WNCK_CHECK_VERSION (2, 6, 0)
+
+##  WnckClassGroup *wnck_window_get_class_group (WnckWindow *window)
+WnckClassGroup *
+wnck_window_get_class_group (window)
+	WnckWindow *window
+
+#endif
+
+#if WNCK_CHECK_VERSION (2, 8, 0)
+
+##  WnckWindowType wnck_window_get_window_type (WnckWindow *window) 
+WnckWindowType
+wnck_window_get_window_type (window)
+	WnckWindow *window
+
+##  gboolean wnck_window_is_fullscreen (WnckWindow *window)
+gboolean
+wnck_window_is_fullscreen (window)
+	WnckWindow *window
+
+##  void wnck_window_set_fullscreen (WnckWindow *window, gboolean fullscreen)
+void
+wnck_window_set_fullscreen (window, fullscreen)
+	WnckWindow *window
+	gboolean fullscreen
+
+##  gboolean wnck_window_demands_attention (WnckWindow *window)
+gboolean
+wnck_window_demands_attention (window)
+	WnckWindow *window
+
+##  gboolean wnck_window_is_most_recently_activated (WnckWindow *window)
+gboolean
+wnck_window_is_most_recently_activated (window)
+	WnckWindow *window
+
+#endif
+
+#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+
+##  gint wnck_window_get_sort_order (WnckWindow *window)
+gint
+wnck_window_get_sort_order (window)
+	WnckWindow *window
+
+##  gboolean wnck_window_or_transient_demands_attention (WnckWindow *window)
+gboolean
+wnck_window_or_transient_demands_attention (window)
+	WnckWindow *window
+
+##  gboolean wnck_window_transient_is_active (WnckWindow *window)
+gboolean
+wnck_window_transient_is_active (window)
+	WnckWindow *window
 
 #endif
 
@@ -377,6 +424,8 @@ wnck_create_window_action_menu (window)
 	PERL_UNUSED_VAR (ix);
 
 MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck	PREFIX = wnck_
+
+#if !WNCK_CHECK_VERSION (2, 9, 91) /* FIXME: 2.10 */
 
 =for object Gnome2::Wnck::main
 
@@ -400,3 +449,5 @@ wnck_create_window_menu (class, ...)
 	g_list_free (windows);
     OUTPUT:
 	RETVAL
+
+#endif
