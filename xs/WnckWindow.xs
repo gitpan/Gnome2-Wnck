@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.9 2004/07/10 14:25:31 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.10 2004/07/26 21:47:20 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -141,7 +141,7 @@ wnck_window_set_skip_tasklist (window, skip)
 	WnckWindow *window
 	gboolean skip
 
-#if WNCK_CHECK_VERSION (2, 6, 3)
+#if WNCK_CHECK_VERSION (2, 6, 3) || WNCK_I_AM_SO_INCREDIBLY_BROKEN
 
 ##  void wnck_window_close (WnckWindow *window, guint32 timestamp) 
 void

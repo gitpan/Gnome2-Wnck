@@ -6,9 +6,9 @@ use ExtUtils::MakeMaker;
 use Cwd;
 use File::Spec;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.11 2004/04/24 15:24:25 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.12 2004/07/26 21:46:57 kaffeetisch Exp $
 
-our %build_reqs = (
+my %build_reqs = (
   'perl-ExtUtils-Depends'   => '0.20',
   'perl-ExtUtils-PkgConfig' => '1.03',
   'perl-Glib'               => '1.04',
@@ -36,12 +36,14 @@ unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
   exit 1; # not reached
 }
 
+# --------------------------------------------------------------------------- #
+
 my %pkgcfg = ExtUtils::PkgConfig->find("libwnck-1.0");
 
 mkdir 'build', 0777;
 
-our @xs_files = <xs/*.xs>;
-our %pod_files = (
+my @xs_files = <xs/*.xs>;
+my %pod_files = (
   'Wnck.pm' => '$(INST_MAN3DIR)/Gnome2::Wnck.$(MAN3EXT)',
   Glib::MakeHelper->do_pod_files (@xs_files),
 );
@@ -53,6 +55,16 @@ ExtUtils::PkgConfig->write_version_macros (
   "build/wnck2perl-version.h",
   "libwnck-1.0" => "WNCK",
 );
+
+# --------------------------------------------------------------------------- #
+
+# Mark 2.6.2.1 to work around an API change.  Would someone please stop the
+# madness?
+if ($pkgcfg{modversion} eq "2.6.2.1") {
+  $pkgcfg{cflags} .= " -DWNCK_I_AM_SO_INCREDIBLY_BROKEN";
+}
+
+# --------------------------------------------------------------------------- #
 
 my $wnck = ExtUtils::Depends->new('Gnome2::Wnck', 'Gtk2');
 $wnck->set_inc($pkgcfg{cflags} . " -DWNCK_I_KNOW_THIS_IS_UNSTABLE");

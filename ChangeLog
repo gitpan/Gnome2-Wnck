@@ -1,3 +1,11 @@
+2004/07/26 23:39 (+0200) kaffeetisch
+
+	* Makefile.PL, WnckWindow.xs: Fix build when compiling against
+	libwnck 2.6.2.1.  (Thanks to Thierry Vignaud for reporting the
+	issue.)
+
+	* NEWS, Wnck.pm: Version 0.06.
+
 2004/07/10 16:41 (+0200) kaffeetisch
 
 	A NEWS
