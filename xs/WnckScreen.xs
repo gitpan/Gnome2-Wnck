@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.9 2004/05/16 15:50:50 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.10 2004/10/25 18:50:28 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -57,6 +57,15 @@ wnck_screen_get_active_workspace (screen)
 WnckWindow*
 wnck_screen_get_active_window (screen)
 	WnckScreen *screen
+
+#if WNCK_CHECK_VERSION (2, 8, 0)
+
+##  WnckWindow * wnck_screen_get_previously_active_window (WnckScreen *screen)
+WnckWindow *
+wnck_screen_get_previously_active_window (screen)
+	WnckScreen *screen
+
+#endif
 
 =for apidoc
 

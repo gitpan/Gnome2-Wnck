@@ -3,14 +3,14 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.11 2004/08/10 18:17:13 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.12 2004/10/25 18:50:28 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
 }
 else {
   Gtk2 -> init();
-  plan tests => 36;
+  plan tests => 38;
 }
 
 ###############################################################################
@@ -108,10 +108,19 @@ SKIP: {
   like($window -> is_active(), $boolean);
 
   SKIP: {
-    skip("demands_attention is new in 2.8", 1)
-      unless (Gnome2::Wnck -> CHECK_VERSION(2, 7, 90)); # FIXME: 2.8
+    skip("is_fullscreen and set_fullscreen are new in 2.4", 1)
+      unless (Gnome2::Wnck -> CHECK_VERSION(2, 4, 0));
+
+    like($window -> is_fullscreen(), $boolean);
+    $window -> set_fullscreen($window -> is_fullscreen());
+  }
+
+  SKIP: {
+    skip("demands_attention and is_most_recently_activated are new in 2.8", 2)
+      unless (Gnome2::Wnck -> CHECK_VERSION(2, 8, 0));
 
     like($window -> demands_attention(), $boolean);
+    like($window -> is_most_recently_activated(), $boolean);
   }
 
   $window -> set_skip_pager($window -> is_skip_pager());

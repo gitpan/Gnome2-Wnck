@@ -1,3 +1,23 @@
+2004/10/25 21:00 (+0200) kaffeetisch
+
+	* META.yml, NEWS, Wnck.pm: Version 0.08.
+
+2004/10/25 20:49 (+0200) kaffeetisch
+
+	* t/WnckScreen.t, xs/WnckScreen.xs: Bind and test
+	wnck_screen_get_previously_active_window.
+
+	* t/WnckWindow.t, xs/WnckWindow.xs: Bind and test
+	wnck_window_is_fullscreen, wnck_window_set_fullscreen and
+	wnck_window_is_most_recently_activated.
+
+2004/10/24 11:55 (-0400) rwmcfa1
+
+	* MANIFEST.SKIP: updates
+
+	* perl-Gnome2-Wnck.spec.in: new scheme that addresses x86_64 problems
+	found by Carl Nygard
+
 2004/08/13 10:40 (+0200) kaffeetisch
 
 	* NEWS, Wnck.pm: Version 0.07.

@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.11 2004/08/10 18:17:13 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.12 2004/10/25 18:50:28 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -127,16 +127,36 @@ gboolean
 wnck_window_is_skip_tasklist (window)
 	WnckWindow *window
 
+#if WNCK_CHECK_VERSION (2, 4, 0)
+
+##  gboolean wnck_window_is_fullscreen (WnckWindow *window)
+gboolean
+wnck_window_is_fullscreen (window)
+	WnckWindow *window
+
+##  void wnck_window_set_fullscreen (WnckWindow *window, gboolean fullscreen)
+void
+wnck_window_set_fullscreen (window, fullscreen)
+	WnckWindow *window
+	gboolean fullscreen
+
+#endif
+
 ##  gboolean wnck_window_is_sticky (WnckWindow *window) 
 gboolean
 wnck_window_is_sticky (window)
 	WnckWindow *window
 
-#if WNCK_CHECK_VERSION (2, 7, 90) /* FIXME: 2.8 */
+#if WNCK_CHECK_VERSION (2, 8, 0)
 
 ##  gboolean wnck_window_demands_attention (WnckWindow *window)
 gboolean
 wnck_window_demands_attention (window)
+	WnckWindow *window
+
+##  gboolean wnck_window_is_most_recently_activated (WnckWindow *window)
+gboolean
+wnck_window_is_most_recently_activated (window)
 	WnckWindow *window
 
 #endif
@@ -276,7 +296,7 @@ gboolean
 wnck_window_is_active (window)
 	WnckWindow *window
 
-#if WNCK_CHECK_VERSION(2,0,0)
+#if WNCK_CHECK_VERSION(2, 0, 0)
 
 ##  void wnck_window_activate_transient (WnckWindow *window) 
 void

@@ -3,14 +3,14 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckScreen.t,v 1.9 2004/08/10 18:17:13 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckScreen.t,v 1.10 2004/10/25 18:50:28 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
 }
 else {
   Gtk2 -> init();
-  plan tests => 13;
+  plan tests => 14;
 }
 
 ###############################################################################
@@ -41,6 +41,15 @@ SKIP: {
   my $active_window = $screen -> get_active_window();
   skip("no active window found", 1) unless (defined($active_window));
   isa_ok($active_window, "Gnome2::Wnck::Window");
+}
+
+SKIP: {
+  skip("get_previously_active_window is new in 2.8", 1)
+    unless (Gnome2::Wnck -> CHECK_VERSION(2, 8, 0));
+
+  my $prev_window = $screen -> get_previously_active_window();
+  skip("no previously active window found", 1) unless (defined($prev_window));
+  isa_ok($prev_window, "Gnome2::Wnck::Window");
 }
 
 SKIP: {
