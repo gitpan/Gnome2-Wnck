@@ -1,5 +1,10 @@
-Overview of changes in Gnome2-Wnck 0.08
-=======================================
+Overview of changes in Gnome2::Wnck 0.09
+========================================
+
+* Fix test failure.
+
+Overview of changes in Gnome2::Wnck 0.08
+========================================
 
 * New bindings for:
   - wnck_screen_get_previously_active_window
@@ -7,20 +12,20 @@ Overview of changes in Gnome2-Wnck 0.08
   - wnck_window_set_fullscreen
   - wnck_window_is_most_recently_activated
 
-Overview of changes in Gnome2-Wnck 0.07
-=======================================
+Overview of changes in Gnome2::Wnck 0.07
+========================================
 
 * Bind and test wnck_window_get_window_type, wnck_window_demands_attention,
   wnck_tasklist_set_grouping, and wnck_pager_set_display_mode.
 * Remove the binding for wnck_gtk_window_set_dock_type.
 
-Overview of changes in Gnome2-Wnck 0.06
-=======================================
+Overview of changes in Gnome2::Wnck 0.06
+========================================
 
 * Make we sure we compile against libwnck 2.6.2.1.
 
-Overview of changes in Gnome2-Wnck 0.05
-=======================================
+Overview of changes in Gnome2::Wnck 0.05
+========================================
 
 * Improve compatibility with older versions of libwnck.
 * Make sure we work with libwnck 2.6.3, which introduces an incompatible API
