@@ -1,6 +1,6 @@
 package Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.9 2004/04/24 15:24:25 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.11 2004/07/10 14:42:40 kaffeetisch Exp $
 
 use 5.008;
 use strict;
@@ -12,7 +12,7 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 sub import {
   my $self = shift();
@@ -56,6 +56,6 @@ Torsten Schoenfeld E<lt>kaffeetisch@web.deE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2003 by the gtk2-perl team
+Copyright (C) 2003-2004 by the gtk2-perl team
 
 =cut

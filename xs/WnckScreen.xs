@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2003 by the gtk2-perl team
+ * Copyright (C) 2003-2004 by the gtk2-perl team
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.8 2004/04/20 15:25:12 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.9 2004/05/16 15:50:50 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -104,11 +104,15 @@ wnck_screen_get_workspace_count (screen)
 
 #endif
 
+#if WNCK_CHECK_VERSION(2,2,0)
+
 ##  void wnck_screen_change_workspace_count (WnckScreen *screen, int count) 
 void
 wnck_screen_change_workspace_count (screen, count)
 	WnckScreen *screen
 	int count
+
+#endif
 
 ##  gboolean wnck_screen_net_wm_supports (WnckScreen *screen, const char *atom) 
 gboolean

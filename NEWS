@@ -1,0 +1,6 @@
+Overview of changes in Gnome2-Wnck 0.05
+=======================================
+
+* Improve compatibility with older versions of libwnck.
+* Make sure we work with libwnck 2.6.3, which introduces an incompatible API
+  change -- in a stable release.

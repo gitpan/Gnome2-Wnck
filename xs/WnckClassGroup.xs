@@ -15,12 +15,18 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckClassGroup.xs,v 1.1 2004/04/20 15:25:12 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckClassGroup.xs,v 1.2 2004/05/22 15:49:46 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
 
 MODULE = Gnome2::Wnck::ClassGroup	PACKAGE = Gnome2::Wnck::ClassGroup	PREFIX = wnck_class_group_
+
+BOOT:
+/* pass -Werror even if there are no xsubs at all */
+#if !WNCK_CHECK_VERSION (2,6,0)
+	PERL_UNUSED_VAR (file);
+#endif
 
 #if WNCK_CHECK_VERSION (2,6,0)
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2003 by the gtk2-perl team
+ * Copyright (C) 2003-2004 by the gtk2-perl team
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -15,10 +15,12 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckTasklist.xs,v 1.5 2003/11/26 21:29:37 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckTasklist.xs,v 1.6 2004/05/16 15:50:50 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
+
+#if WNCK_CHECK_VERSION(2,0,0)
 
 static GPerlCallback *
 wnck2perl_load_icon_function_create (SV *func, SV *data)
@@ -49,6 +51,8 @@ wnck2perl_load_icon_function (const char *icon_name,
 
 	return retval;
 }
+
+#endif
 
 MODULE = Gnome2::Wnck::Tasklist	PACKAGE = Gnome2::Wnck::Tasklist	PREFIX = wnck_tasklist_
 

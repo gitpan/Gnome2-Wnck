@@ -1,3 +1,32 @@
+2004/07/10 16:41 (+0200) kaffeetisch
+
+	A NEWS
+	* MANIFEST
+	* Wnck.pm: Version 0.05.
+
+2004/07/10 16:20 (+0200) kaffeetisch
+
+	* xs/WnckWindow.xs: In libwnck 2.6.3, wnck_window_close now takes
+	an additional argument.  Respond to this API break with some
+	preprocessor ugliness.
+
+2004/05/22 17:49 (+0200) kaffeetisch
+
+	* xs/WnckClassGroup.xs: Mark 'file' unused in case there are no
+	xsubs at all.
+
+2004/05/16 17:48 (+0200) kaffeetisch
+
+	* xs/WnckScreen.xs: Protect change_workspace_count with version
+	guards.
+
+	* xs/WnckTasklist.xs: Protect wnck2perl_load_icon_function_create
+	with version guards.
+
+2004/05/06 21:05 (-0400) muppetman
+
+	* Wnck.pm: update copyright notice for 2004
+
 2004/04/24 17:24 (+0200) kaffeetisch
 
 	* Makefile.PL
