@@ -6,12 +6,12 @@ use ExtUtils::MakeMaker;
 use Cwd;
 use File::Spec;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.10 2004/02/16 16:14:19 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.11 2004/04/24 15:24:25 kaffeetisch Exp $
 
 our %build_reqs = (
   'perl-ExtUtils-Depends'   => '0.20',
   'perl-ExtUtils-PkgConfig' => '1.03',
-  'perl-Glib'               => '1.035',
+  'perl-Glib'               => '1.04',
   'perl-Gtk2'               => '1.00',
   'Wnck'                    => '2.0.0',
 );

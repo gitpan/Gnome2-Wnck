@@ -3,7 +3,7 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWorkspace.t,v 1.7 2004/02/16 16:14:31 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWorkspace.t,v 1.9 2004/04/20 15:25:11 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
@@ -30,7 +30,7 @@ SKIP: {
 
  SKIP: {
     skip("get_width, get_height, get_viewport_x, get_viewport_y and is_virtual are new in 2.3.1", 5)
-      unless (Gnome2::Wnck -> check_version(2, 3, 1));
+      unless (Gnome2::Wnck -> CHECK_VERSION(2, 4, 0));
 
     like($workspace -> get_width(), qr/^\d+$/);
     like($workspace -> get_height(), qr/^\d+$/);

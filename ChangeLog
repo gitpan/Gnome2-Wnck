@@ -1,3 +1,50 @@
+2004/04/24 17:24 (+0200) kaffeetisch
+
+	* Makefile.PL
+	* README
+	* Wnck.pm: Version 0.04.
+
+2004/04/24 17:14 (+0200) kaffeetisch
+
+	* wnck2perl.h: Only include libwnck/class-group.h if we're running
+	against 2.6.0.
+
+2004/04/20 17:17 (+0200) kaffeetisch
+
+	* Wnck.pm: Add an import method to enable version checking.
+
+	A t/WnckClassGroup.t
+	A xs/WnckClassGroup.xs
+	* MANIFEST
+	* maps
+	* wnck2perl.h: Bind and test WnckClassGroup.
+
+	* t/WnckScreen.t: Skip the get_workspace_count test when not
+	running 2.0.0 or higher.
+
+	* t/WnckTasklist.t: Test set_icon_loader.
+
+	* t/WnckWindow.t: Test activate_transient, set_icon_geometry,
+	get_icon_is_fallback, get_actions, and get_state.
+
+	* t/WnckWindow.t
+	* xs/WnckWindow.xs: Bind and test get_class_group.
+
+	* t/WnckWindow.t
+	* t/WnckWorkspace.t
+	* xs/WnckScreen.xs
+	* xs/WnckWindow.xs
+	* xs/WnckWorkspace.xs: Check for stable releases only.
+
+2004/03/03 20:35 (+0100) kaffeetisch
+
+	* t/WnckPager.t
+	* t/WnckTasklist.t
+	* t/WnckWindow.t
+	* t/WnckWorkspace.t
+	* xs/Wnck.xs: Adapt to the new version information implementation
+	policy.
+
 2004/02/16 17:08 (+0100) kaffeetisch
 
 	* MANIFEST: Sort.

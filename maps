@@ -1,4 +1,5 @@
 WNCK_TYPE_APPLICATION	WnckApplication	GObject	Gnome2::Wnck::Application
+WNCK_TYPE_CLASS_GROUP	WnckClassGroup	GObject	Gnome2::Wnck::ClassGroup
 WNCK_TYPE_PAGER	WnckPager	GtkObject	Gnome2::Wnck::Pager
 WNCK_TYPE_SCREEN	WnckScreen	GObject	Gnome2::Wnck::Screen
 WNCK_TYPE_TASKLIST	WnckTasklist	GtkObject	Gnome2::Wnck::Tasklist

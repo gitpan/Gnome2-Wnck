@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2003 by the gtk2-perl team
+ * Copyright (C) 2003-2004 by the gtk2-perl team
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.7 2004/01/06 20:38:27 muppetman Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.8 2004/04/20 15:25:12 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -58,6 +58,15 @@ wnck_window_get_group_leader (window)
 gulong
 wnck_window_get_xid (window)
 	WnckWindow *window
+
+#if WNCK_CHECK_VERSION (2,6,0)
+
+##  WnckClassGroup *wnck_window_get_class_group (WnckWindow *window)
+WnckClassGroup *
+wnck_window_get_class_group (window)
+	WnckWindow *window
+
+#endif
 
 ##  const char* wnck_window_get_session_id (WnckWindow *window)
 const char*
@@ -302,7 +311,7 @@ wnck_window_is_on_workspace (window, workspace)
 	WnckWindow *window
 	WnckWorkspace *workspace
 
-#if WNCK_CHECK_VERSION(2, 3, 1)
+#if WNCK_CHECK_VERSION(2,4,0)
 
 ##  gboolean wnck_window_is_in_viewport (WnckWindow *window, WnckWorkspace *workspace) 
 gboolean

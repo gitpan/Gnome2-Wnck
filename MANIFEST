@@ -12,6 +12,7 @@ maps
 perl-Gnome2-Wnck.spec.in
 t/Wnck.t
 t/WnckApplication.t
+t/WnckClassGroup.t
 t/WnckPager.t
 t/WnckScreen.t
 t/WnckTasklist.t
@@ -20,6 +21,7 @@ t/WnckWorkspace.t
 wnck2perl.h
 xs/Wnck.xs
 xs/WnckApplication.xs
+xs/WnckClassGroup.xs
 xs/WnckPager.xs
 xs/WnckScreen.xs
 xs/WnckTasklist.xs

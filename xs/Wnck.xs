@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/Wnck.xs,v 1.6 2003/12/31 07:33:08 muppetman Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/Wnck.xs,v 1.7 2004/03/03 19:33:30 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -31,7 +31,7 @@ void
 wnck_gtk_window_set_dock_type (window)
 	GtkWindow *window
 
-MODULE = Gnome2::Wnck	PACKAGE = Gnome2::Wnck	PREFIX = wnck_
+MODULE = Gnome2::Wnck	PACKAGE = Gnome2::Wnck
 
 =for object Gnome2::Wnck::main
 
@@ -42,7 +42,7 @@ BOOT:
 #include "boot.xsh"
 
 void
-wnck_get_version_info (class)
+GET_VERSION_INFO (class)
     PPCODE:
 	EXTEND (SP, 3);
 	PUSHs (sv_2mortal (newSViv (WNCK_MAJOR_VERSION)));
@@ -51,7 +51,7 @@ wnck_get_version_info (class)
 	PERL_UNUSED_VAR (ax);
 
 bool
-wnck_check_version (class, major, minor, micro)
+CHECK_VERSION (class, major, minor, micro)
 	int major
 	int minor
 	int micro

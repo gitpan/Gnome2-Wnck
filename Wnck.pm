@@ -1,6 +1,6 @@
 package Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.7 2004/02/16 16:14:19 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.9 2004/04/24 15:24:25 kaffeetisch Exp $
 
 use 5.008;
 use strict;
@@ -12,7 +12,12 @@ require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
+
+sub import {
+  my $self = shift();
+  $self -> VERSION(@_);
+}
 
 sub dl_load_flags { 0x01 }
 

@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.7 2003/12/12 23:11:55 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.8 2004/04/20 15:25:12 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -146,7 +146,7 @@ wnck_screen_toggle_showing_desktop (screen, show)
 
 #endif
 
-#if WNCK_CHECK_VERSION(2, 3, 1)
+#if WNCK_CHECK_VERSION(2,4,0)
 
 ##  void wnck_screen_move_viewport (WnckScreen *screen, int x, int y) 
 void
