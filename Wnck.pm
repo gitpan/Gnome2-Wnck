@@ -1,18 +1,18 @@
 package Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.1 2003/10/11 18:39:07 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.3 2003/11/28 21:39:14 kaffeetisch Exp $
 
 use 5.008;
 use strict;
 use warnings;
 
-use Gtk2;
+use Gtk2 -init;
 
 require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub dl_load_flags { 0x01 }
 
@@ -28,7 +28,6 @@ Gnome2::Wnck - Perl interface to the Window Navigator Construction Kit
 =head1 SYNOPSIS
 
   use Gnome2::Wnck;
-  Gtk2 -> init();
 
   my $screen = Gnome2::Wnck::Screen -> get_default();
   $screen -> force_update();

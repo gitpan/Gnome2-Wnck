@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2003 by the gtk2-perl team
+ * 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.5 2003/11/26 21:29:37 kaffeetisch Exp $
+ */
+
 #include "wnck2perl.h"
 
 MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck::Window	PREFIX = wnck_window_
@@ -5,7 +25,6 @@ MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck::Window	PREFIX = wnck_windo
 ##  WnckWindow* wnck_window_get (gulong xwindow) 
 WnckWindow*
 wnck_window_get (class, xwindow)
-	SV *class
 	gulong xwindow
     C_ARGS:
 	xwindow
@@ -224,10 +243,14 @@ gboolean
 wnck_window_is_active (window)
 	WnckWindow *window
 
+#if WNCK_CHECK_VERSION(2,0,0)
+
 ##  void wnck_window_activate_transient (WnckWindow *window) 
 void
 wnck_window_activate_transient (window)
 	WnckWindow *window
+
+#endif
 
 ##  GdkPixbuf* wnck_window_get_icon (WnckWindow *window) 
 GdkPixbuf*
@@ -279,12 +302,15 @@ wnck_window_is_on_workspace (window, workspace)
 	WnckWindow *window
 	WnckWorkspace *workspace
 
-# FIXME: what version introduced this function?
-###  gboolean wnck_window_is_in_viewport (WnckWindow *window, WnckWorkspace *workspace) 
-#gboolean
-#wnck_window_is_in_viewport (window, workspace)
-#	WnckWindow *window
-#	WnckWorkspace *workspace
+#if WNCK_CHECK_VERSION(2, 3, 1)
+
+##  gboolean wnck_window_is_in_viewport (WnckWindow *window, WnckWorkspace *workspace) 
+gboolean
+wnck_window_is_in_viewport (window, workspace)
+	WnckWindow *window
+	WnckWorkspace *workspace
+
+#endif
 
 MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck::Window	PREFIX = wnck_
 
@@ -293,14 +319,17 @@ GtkWidget*
 wnck_create_window_action_menu (window)
 	WnckWindow *window
     ALIAS:
-	create_action_menu = 1
+	create_action_menu = 0
 
 MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck	PREFIX = wnck_
+
+=for object Gnome2::Wnck::main
+
+=cut
 
 ##  GtkWidget* wnck_create_window_menu (GList *windows)
 GtkWidget*
 wnck_create_window_menu (class, ...)
-	SV *class
     PREINIT:
 	int i;
 	GList *windows = NULL;

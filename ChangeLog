@@ -1,3 +1,124 @@
+2003/11/28 22:38 (+0100) kaffeetisch
+
+	* META.yml
+	* Wnck.pm: Prepare the release of 0.02.
+
+2003/11/26 22:16 (+0100) kaffeetisch
+
+	Applying a patch from muppet.
+
+	* xs/WnckApplication.xs
+	* xs/WnckPager.xs
+	* xs/WnckScreen.xs
+	* xs/WnckTasklist.xs
+	* xs/WnckWindow.xs
+	* xs/WnckWorkspace.xs: #ifdef functions that aren't available in
+	libwnck's older than 2.0.0.
+
+	* t/WnckPager.t
+	* t/WnckScreen.t
+	* t/WnckTasklist.t: Skip certain tests for the same reason.
+
+	* Makefile.PL: Support older versions of libwnck.  Use a default
+	micro version if there's none.
+
+2003/11/25 00:19 (+0100) kaffeetisch
+
+	* t/Wnck.t
+	* t/WnckApplication.t
+	* t/WnckScreen.t
+	* t/WnckWindow.t: Skip all or some tests if there's no active
+	window.
+
+2003/11/24 11:22 (-0500) muppetman
+
+	* xs/Wnck.xs: keep from clobbering Gtk2::Window's docs, put these
+	docs someplace else.  note: Gnome2::Wnck::main also sucks as a
+	manpage name; a better solution would be to include this somehow
+	in the main page, either by hand docs or include directives.
+
+2003/11/17 22:35 (+0100) kaffeetisch
+
+	* Wnck.pm: Pass -init to Gtk2 when use'ing it so that users don't
+	have to.
+
+	* t/Wnck.t
+	* t/WnckApplication.t
+	* t/WnckPager.t
+	* t/WnckScreen.t
+	* t/WnckTasklist.t
+	* t/WnckWindow.t
+	* t/WnckWorkspace.t: Don't 'use Gtk2', see above.
+
+2003/11/15 12:19 (+0100) kaffeetisch
+
+	* xs/WnckApplication.xs
+	* xs/WnckTasklist.xs: Add API documentation.
+
+2003/11/14 19:57 (+0100) kaffeetisch
+
+	* xs/Wnck.xs
+	* xs/WnckApplication.xs
+	* xs/WnckPager.xs
+	* xs/WnckScreen.xs
+	* xs/WnckTasklist.xs
+	* xs/WnckWindow.xs
+	* xs/WnckWorkspace.xs: Add license boilerplate.
+
+2003/11/13 17:49 (+0100) kaffeetisch
+
+	* Makefile.PL: Install manpage as Gnome2::Wnck.3pm, not as
+	Wnck.3pm.
+
+2003/11/09 03:15 (+0100) kaffeetisch
+
+	* Makefile.PL: Require version 1.01 of Glib and version 1.00 of
+	Gtk2.  Migrate to Glib::MakeHelper.  Generate POD documentation.
+
+	* xs/Wnck.xs
+	* xs/WcnkApplication.xs
+	* xs/WnckPager.xs
+	* xs/WnckScreen.xs
+	* xs/WnckTasklist.xs
+	* xs/WnckWindow.xs: Remove declarations of class parameters.
+
+	* xs/WnckWindow.xs: Rearrange ALIAS sections.
+
+	* xs/WnckWindow.xs: Add =for directives to keep the Gnome2::Wnck
+	manpage from being overwritten.
+
+2003/10/30 16:32 (+0100) kaffeetisch
+
+	* xs/Wnck.xs: Implement Gnome2::Wnck::get_version_info and
+	Gnome2::Wnck::check_version.
+
+	* t/WnckWorkspace.t
+	* t/WnckWindow.t: Reenable certain tests.  Skip those that need a
+	certain version unless we fulfill that requirement.
+
+2003/10/28 23:25 (+0100) kaffeetisch
+
+	* xs/WnckScreen.xs
+	* xs/WnckApplication.xs: Don't free what wnck_screen_get_windows,
+	wnck_screen_get_windows_stacked and wnck_application_get_windows
+	return.  It's not ours.
+
+	* t/WnckWorkspace.t: Disable $workspace -> get_name() test as the
+	name may have been modified by the user.  Thanks to Christian
+	Borup for pointing this out. :-)
+
+2003/10/12 03:19 (+0200) kaffeetisch
+
+	* Makefile.PL: Add muppet's version macro generation code to
+	create wnck2perl-version.h.
+
+	* wnck2perl.h: Include wnck2perl-version.h.
+
+	* xs/WnckScreen.xs
+	* xs/WnckWindow.xs
+	* xs/WnckWorkspace.xs: Use the new version macro to enable
+	viewport functions introduced in libwnck 2.3.1.
+
 2003/10/11 20:31 (+0200) kaffeetisch
 
 	A LICENSE

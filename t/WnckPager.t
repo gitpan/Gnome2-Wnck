@@ -2,7 +2,6 @@
 use strict;
 use Test::More tests => 1;
 
-use Gtk2 -init;
 use Gnome2::Wnck;
 
 ###############################################################################
@@ -15,8 +14,11 @@ $screen -> force_update();
 my $pager = Gnome2::Wnck::Pager -> new($screen);
 isa_ok($pager, "Gnome2::Wnck::Pager");
 
-$pager -> set_screen($screen);
+if (Gnome2::Wnck -> check_version(2, 0, 0)) {
+  $pager -> set_screen($screen);
+  $pager -> set_shadow_type("etched-in");
+}
+
 $pager -> set_orientation("vertical");
 $pager -> set_n_rows(3);
 $pager -> set_show_all(1);
-$pager -> set_shadow_type("etched-in");

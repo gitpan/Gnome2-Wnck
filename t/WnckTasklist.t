@@ -2,7 +2,6 @@
 use strict;
 use Test::More tests => 2;
 
-use Gtk2 -init;
 use Gnome2::Wnck;
 
 ###############################################################################
@@ -14,7 +13,10 @@ $screen -> force_update();
 
 my $tasklist = Gnome2::Wnck::Tasklist -> new($screen);
 
-$tasklist -> set_screen($screen);
+if (Gnome2::Wnck -> check_version(2, 0, 0)) {
+  $tasklist -> set_screen($screen);
+}
+
 $tasklist -> set_switch_workspace_on_unminimize(1);
 $tasklist -> set_grouping_limit(5);
 $tasklist -> set_include_all_workspaces(0);

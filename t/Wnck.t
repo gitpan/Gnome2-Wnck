@@ -2,7 +2,6 @@
 use strict;
 use Test::More tests => 2;
 
-# use Gtk2 -init;
 use Gnome2::Wnck;
 Gtk2 -> init();
 
@@ -13,7 +12,12 @@ $screen -> force_update();
 
 ###############################################################################
 
-isa_ok($screen -> get_active_window() -> create_action_menu(), "Gtk2::Menu");
+SKIP: {
+  my $active_window = $screen -> get_active_window();
+  skp("no active window found", 1) unless (defined($active_window));
+  isa_ok($active_window -> create_action_menu(), "Gtk2::Menu");
+}
+
 isa_ok(Gnome2::Wnck -> create_window_menu($screen -> get_windows()), "Gtk2::Menu");
 
 ###############################################################################

@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2003 by the gtk2-perl team
+ * 
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckApplication.xs,v 1.6 2003/11/26 21:29:37 kaffeetisch Exp $
+ */
+
 #include "wnck2perl.h"
 
 MODULE = Gnome2::Wnck::Application	PACKAGE = Gnome2::Wnck::Application	PREFIX = wnck_application_
@@ -5,7 +25,6 @@ MODULE = Gnome2::Wnck::Application	PACKAGE = Gnome2::Wnck::Application	PREFIX = 
 ##  WnckApplication* wnck_application_get (gulong xwindow) 
 WnckApplication*
 wnck_application_get (class, xwindow)
-	SV *class
 	gulong xwindow
     C_ARGS:
 	xwindow
@@ -15,20 +34,21 @@ gulong
 wnck_application_get_xid (app)
 	WnckApplication *app
 
-# FIXME: leak?
+=for apidoc
+
+Returns a list of WnckWindow's.
+
+=cut
 ##  GList* wnck_application_get_windows (WnckApplication *app) 
 void
 wnck_application_get_windows (app)
 	WnckApplication *app
     PREINIT:
-	GList *list, *i;
+	GList *i, *list = NULL;
     PPCODE:
 	list = wnck_application_get_windows (app);
-	for (i = list; i != NULL; i = i->next) {
+	for (i = list; i != NULL; i = i->next)
 		XPUSHs (sv_2mortal (newSVWnckWindow (i->data)));
-		/* g_free (i->data); */
-	}
-	/* g_free (list); */
 
 ##  int wnck_application_get_n_windows (WnckApplication *app) 
 int
@@ -65,7 +85,11 @@ gboolean
 wnck_application_get_icon_is_fallback (app)
 	WnckApplication *app
 
+#if WNCK_CHECK_VERSION(2,0,0)
+
 ##  const char* wnck_application_get_startup_id (WnckApplication *app)
 const char*
 wnck_application_get_startup_id (app)
 	WnckApplication *app
+
+#endif
