@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.6 2003/11/26 21:29:37 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckScreen.xs,v 1.7 2003/12/12 23:11:55 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -58,6 +58,11 @@ WnckWindow*
 wnck_screen_get_active_window (screen)
 	WnckScreen *screen
 
+=for apidoc
+
+Returns a list of WnckWindow's.
+
+=cut
 ##  GList* wnck_screen_get_windows (WnckScreen *screen) 
 void
 wnck_screen_get_windows (screen)
@@ -69,6 +74,11 @@ wnck_screen_get_windows (screen)
 	for (i = list; i != NULL; i = i->next)
 		XPUSHs (sv_2mortal (newSVWnckWindow (i->data)));
 
+=for apidoc
+
+Returns a list of WnckWindow's.
+
+=cut
 ##  GList* wnck_screen_get_windows_stacked (WnckScreen *screen) 
 void
 wnck_screen_get_windows_stacked (screen)

@@ -1,18 +1,18 @@
 package Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.3 2003/11/28 21:39:14 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Wnck.pm,v 1.7 2004/02/16 16:14:19 kaffeetisch Exp $
 
 use 5.008;
 use strict;
 use warnings;
 
-use Gtk2 -init;
+use Gtk2;
 
 require DynaLoader;
 
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub dl_load_flags { 0x01 }
 
@@ -42,10 +42,15 @@ Kit library (libwnck for short) to write tasklists and pagers.
 
 =head1 SEE ALSO
 
-L<Gtk2>, L<Gtk2::api> and the source code of libwnck.
+L<Gnome2::Wnck::index>(3pm), L<Gtk2>(3pm), L<Gtk2::api>(3pm) and the source
+code of libwnck.
 
 =head1 AUTHOR
 
 Torsten Schoenfeld E<lt>kaffeetisch@web.deE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2003 by the gtk2-perl team
 
 =cut

@@ -1,8 +1,17 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 10;
-
+use Test::More;
 use Gnome2::Wnck;
+
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckScreen.t,v 1.7 2004/02/16 16:14:31 kaffeetisch Exp $
+
+unless (Gtk2 -> init_check()) {
+  plan skip_all => "Couldn't initialize Gtk2";
+}
+else {
+  Gtk2 -> init();
+  plan tests => 10;
+}
 
 ###############################################################################
 
@@ -11,8 +20,17 @@ isa_ok($screen, "Gnome2::Wnck::Screen");
 
 $screen -> force_update();
 
-isa_ok($screen -> get_workspace(0), "Gnome2::Wnck::Workspace");
-isa_ok($screen -> get_active_workspace(), "Gnome2::Wnck::Workspace");
+SKIP: {
+  my $workspace = $screen -> get_workspace(0);
+  skip("couldn't get first workspace", 1) unless (defined($workspace));
+  isa_ok($workspace, "Gnome2::Wnck::Workspace");
+}
+
+SKIP: {
+  my $workspace = $screen -> get_active_workspace();
+  skip("couldn't get active workspace", 1) unless (defined($workspace));
+  isa_ok($workspace, "Gnome2::Wnck::Workspace");
+}
 
 SKIP: {
   my $active_window = $screen -> get_active_window();
@@ -20,8 +38,17 @@ SKIP: {
   isa_ok($active_window, "Gnome2::Wnck::Window");
 }
 
-isa_ok(($screen -> get_windows())[0], "Gnome2::Wnck::Window");
-isa_ok(($screen -> get_windows_stacked())[0], "Gnome2::Wnck::Window");
+SKIP: {
+  my @windows = $screen -> get_windows();
+  skip("couldn't get windows", 1) unless (@windows);
+  isa_ok($windows[0], "Gnome2::Wnck::Window");
+}
+
+SKIP: {
+  my @windows = $screen -> get_windows_stacked();
+  skip("couldn't get stacked windows", 1) unless (@windows);
+  isa_ok($windows[0], "Gnome2::Wnck::Window");
+}
 
 like($screen -> get_workspace_count(), qr/^\d+$/);
 like($screen -> get_background_pixmap(), qr/^\d+$/);

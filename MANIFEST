@@ -1,11 +1,15 @@
 ChangeLog
 LICENSE
 MANIFEST			This list of files
+MANIFEST.SKIP
 META.yml			Module meta-data (added by MakeMaker)
 Makefile.PL
+README
 Wnck.pm
+copyright.pod
 genmaps.pl
 maps
+perl-Gnome2-Wnck.spec.in
 t/Wnck.t
 t/WnckApplication.t
 t/WnckPager.t

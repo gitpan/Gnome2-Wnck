@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.5 2003/11/26 21:29:37 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.7 2004/01/06 20:38:27 muppetman Exp $
  */
 
 #include "wnck2perl.h"
@@ -320,6 +320,8 @@ wnck_create_window_action_menu (window)
 	WnckWindow *window
     ALIAS:
 	create_action_menu = 0
+    CLEANUP:
+	PERL_UNUSED_VAR (ix);
 
 MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck	PREFIX = wnck_
 
@@ -327,6 +329,11 @@ MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck	PREFIX = wnck_
 
 =cut
 
+=for apidoc
+
+=for arg ... of WnckWindow's
+
+=cut
 ##  GtkWidget* wnck_create_window_menu (GList *windows)
 GtkWidget*
 wnck_create_window_menu (class, ...)

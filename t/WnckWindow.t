@@ -1,8 +1,17 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 18;
-
+use Test::More;
 use Gnome2::Wnck;
+
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.8 2004/02/16 16:14:31 kaffeetisch Exp $
+
+unless (Gtk2 -> init_check()) {
+  plan skip_all => "Couldn't initialize Gtk2";
+}
+else {
+  Gtk2 -> init();
+  plan tests => 18;
+}
 
 ###############################################################################
 
@@ -13,10 +22,17 @@ $screen -> force_update();
 
 SKIP: {
   my $window = $screen -> get_active_window();
-  skp("no active window found", 18) unless (defined($window));
+  skip("no active window found", 18) unless (defined($window));
+
+  my $workspace = $window -> get_workspace();
+  my $have_workspaces = defined $workspace;
+  SKIP: {
+    skip("windowmanager doesn't appear to support workspaces", 1)
+      unless $have_workspaces;
+    isa_ok($workspace, "Gnome2::Wnck::Workspace");
+  }
 
   isa_ok($window -> get_application(), "Gnome2::Wnck::Application");
-  isa_ok($window -> get_workspace(), "Gnome2::Wnck::Workspace");
   isa_ok($window -> get_icon(), "Gtk2::Gdk::Pixbuf");
   isa_ok($window -> get_mini_icon(), "Gtk2::Gdk::Pixbuf");
 
@@ -31,9 +47,11 @@ SKIP: {
   like($window -> get_pid(), qr/^\d+$/);
   # ok($window -> get_session_id());
   # ok($window -> get_session_id_utf8());
-  ok($window -> is_on_workspace($window -> get_workspace()));
-
   SKIP: {
+    skip("windowmanager doesn't appear to support workspaces", 2)
+      unless $have_workspaces;
+    ok($window -> is_on_workspace($window -> get_workspace()));
+
     skip("is_in_viewport is new in 2.3.1", 1)
     unless (Gnome2::Wnck -> check_version(2, 3, 1));
 

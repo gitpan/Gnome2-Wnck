@@ -1,8 +1,17 @@
 #!/usr/bin/perl -w
 use strict;
-use Test::More tests => 1;
-
+use Test::More;
 use Gnome2::Wnck;
+
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckPager.t,v 1.5 2004/02/16 16:14:31 kaffeetisch Exp $
+
+unless (Gtk2 -> init_check()) {
+  plan skip_all => "Couldn't initialize Gtk2";
+}
+else {
+  Gtk2 -> init();
+  plan tests => 1;
+}
 
 ###############################################################################
 

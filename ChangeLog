@@ -1,3 +1,106 @@
+2004/02/16 17:08 (+0100) kaffeetisch
+
+	* MANIFEST: Sort.
+
+	* Makefile.PL: Depend on Glib 1.035.
+
+	* README: Update required versions of EU::Depends and ::PkgConfig.
+
+	* Wnck.pm: Version 0.03.
+
+	* t/Wnck.t
+	* t/WnckApplication.t
+	* t/WnckPager.t
+	* t/WnckScreen.t
+	* t/WnckTasklist.t
+	* t/WnckWindow.t
+	* t/WnckWorkspace.t: In addition to Gtk2 -> init_check, also call
+	Gtk2 -> init to make sure everything is initialized properly.
+	(Found by Marc Brockschmidt.)
+
+2004/02/14 16:39 (+0100) kaffeetisch
+
+	A copyright.pod
+	* Makefile.PL: Switch to the new EU::Depends and ::PkgConfig
+	versions.
+
+2004/01/24 21:44 (-0500) rwmcfa1
+
+	* Makefile.PL: removed runtime_reqs stuff, replaced by the pkg-config 
+	trick
+	
+	* perl-Gnome2-Wnck.spec.in: use pkg-config for Requires version
+
+2004/01/06 15:37 (-0500) muppetman
+
+	* xs/WnckWindow.xs: use PERL_UNUSED_VAR to hush the compiler
+
+2004/01/02 15:09 (-0500) rwmcfa1
+
+	* Makefile.PL: rpm stuff added
+
+	* perl-Gnome2-Wnck.spec.in: initial import
+
+2003/12/31 02:26 (-0500) muppetman
+
+	* Wnck.xs: mark ax unused in functions which don't touch the input
+	stack, to hush compiler warnings
+
+2003/12/28 01:44 (-0500) muppetman
+
+	* t/WnckWindow.t: one more skip hack to support window managers which
+	don't support workspaces.
+
+2003/12/28 00:55 (+0100) kaffeetisch
+
+	Applying a patch from muppet.
+
+	* Wnck.pm: Don't initialize Gtk2.
+
+	* t/WnckWindow.t: Skip another workspace related test if
+	workspaces aren't available.
+
+	* t/Wnck.t
+	* t/WnckApplication.t
+	* t/WnckPager.t
+	* t/WnckScreen.t
+	* t/WnckTasklist.t
+	* t/WnckWindow.t
+	* t/WnckWorkspace.t: Skip all tests if Gtk2 can't be initialized.
+
+2003/12/26 11:44 (+0100) kaffeetisch
+
+	* t/WnckScreen.t
+	* t/WnckWorkspace.t: Skip the workspace related tests if no
+	workspace is available.
+
+2003/12/22 23:59 (-0500) muppetman
+
+	* t/Wnck.t, t/WnckApplication.t, t/WnckWindow.t: skp => skip
+
+2003/12/23 01:30 (+0100) kaffeetisch
+
+	* Makefile.PL: Don't call do_pod_files twice.
+
+2003/12/18 22:21 (+0100) kaffeetisch
+
+	* Wnck.pm: Mention Gnome2::Wnck::index.
+
+2003/12/12 23:37 (+0100) kaffeetisch
+
+	A README
+	* MANIFEST: Add a README.
+
+	* Wnck.pm: Add a copyright notice.
+
+	* xs/WnckScreen.xs
+	* xs/WnckWindow.xs: Add API doc.
+
+2003/11/30 15:24 (+0100) kaffeetisch
+
+	A MANIFEST.SKIP
+	* MANIFEST: Imported a skip file.
+
 2003/11/28 22:38 (+0100) kaffeetisch
 
 	* META.yml
