@@ -3,7 +3,7 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckPager.t,v 1.7 2004/08/10 18:17:13 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckPager.t,v 1.8 2005/09/17 20:30:38 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
@@ -28,7 +28,7 @@ if (Gnome2::Wnck -> CHECK_VERSION(2, 0, 0)) {
   $pager -> set_shadow_type("etched-in");
 }
 
-if (Gnome2::Wnck -> CHECK_VERSION(2, 7, 91)) { # FIXME: 2.8
+if (Gnome2::Wnck -> CHECK_VERSION(2, 8, 0)) {
   $pager -> set_display_mode("content");
 }
 

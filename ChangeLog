@@ -1,3 +1,31 @@
+2005/09/17	kaffeetisch
+
+	* NEWS, Wnck.pm: Version 0.11.
+
+	* Makefile.PL, README: Require libwnck 2.12.0.
+
+	* wnck2perl.h, t/WnckPager.t, t/WnckTasklist.t, t/WnckWindow.t,
+	t/WnckWorkspace.t, xs/WnckPager.xs, xs/WnckTasklist.xs,
+	xs/WnckWindow.xs, xs/WnckWorkspace.xs: Make all version checks
+	refer to stable releases.
+
+2005/07/28	kaffeetisch
+
+	* MANIFEST, genmaps.pl, META.yml: Retire good old genmaps.pl and
+	META.yml.
+
+	* t/Wnck.t: Remove useless test.
+
+	* t/WnckTasklist.t, t/WnckWindow.t, xs/WnckTaskList.xs,
+	xs/WnckWindow.xs: Adapt to API changes:
+	wnck_window_demands_attention -> wnck_window_needs_attention,
+	wnck_window_or_transient_demands_attention ->
+	wnck_window_or_transient_needs_attention,
+	wnck_window_transient_is_active ->
+	wnck_window_transient_is_most_recently_activated.  Add
+	wnck_window_get_transient, wnck_window_set_window_type and
+	wnck_tasklist_set_button_relief.
+
 2005/02/24	kaffeetisch
 
 	* META.yml, NEWS, Wnck.pm: Version 0.10.

@@ -3,7 +3,7 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckTasklist.t,v 1.8 2004/08/10 18:17:13 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckTasklist.t,v 1.10 2005/09/17 20:30:38 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
@@ -35,7 +35,7 @@ if (Gnome2::Wnck -> CHECK_VERSION(2, 0, 0)) {
   }, "bla");
 }
 
-if (Gnome2::Wnck -> CHECK_VERSION(2, 7, 91)) { # FIXME: 2.8
+if (Gnome2::Wnck -> CHECK_VERSION(2, 8, 0)) {
   $tasklist -> set_grouping("auto-group");
 }
 
@@ -48,3 +48,10 @@ is($tasklist -> get_minimum_width(), 50);
 
 $tasklist -> set_minimum_height(20);
 is($tasklist -> get_minimum_height(), 20);
+
+SKIP: {
+  skip "new 2.12 stuff", 0
+    unless (Gnome2::Wnck -> CHECK_VERSION(2, 12, 0));
+
+  $tasklist -> set_button_relief("normal");
+}

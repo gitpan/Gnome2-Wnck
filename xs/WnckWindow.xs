@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.14 2005/02/24 18:16:17 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.16 2005/09/17 20:30:39 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -148,7 +148,7 @@ void
 wnck_window_minimize (window)
 	WnckWindow *window
 
-#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+#if WNCK_CHECK_VERSION (2, 10, 0)
 
 ##  void wnck_window_unminimize (WnckWindow *window, guint32 timestamp) 
 void
@@ -251,7 +251,7 @@ void
 wnck_window_unpin (window)
 	WnckWindow *window
 
-#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+#if WNCK_CHECK_VERSION (2, 10, 0)
 
 ##  void wnck_window_activate (WnckWindow *window, guint32 timestamp) 
 void
@@ -275,7 +275,7 @@ wnck_window_is_active (window)
 
 #if WNCK_CHECK_VERSION (2, 0, 0)
 
-#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+#if WNCK_CHECK_VERSION (2, 10, 0)
 
 ##  void wnck_window_activate_transient (WnckWindow *window, guint32 timestamp) 
 void
@@ -381,11 +381,6 @@ wnck_window_set_fullscreen (window, fullscreen)
 	WnckWindow *window
 	gboolean fullscreen
 
-##  gboolean wnck_window_demands_attention (WnckWindow *window)
-gboolean
-wnck_window_demands_attention (window)
-	WnckWindow *window
-
 ##  gboolean wnck_window_is_most_recently_activated (WnckWindow *window)
 gboolean
 wnck_window_is_most_recently_activated (window)
@@ -393,22 +388,42 @@ wnck_window_is_most_recently_activated (window)
 
 #endif
 
-#if WNCK_CHECK_VERSION (2, 9, 92) /* FIXME: 2.10 */
+#if WNCK_CHECK_VERSION (2, 10, 0)
 
 ##  gint wnck_window_get_sort_order (WnckWindow *window)
 gint
 wnck_window_get_sort_order (window)
 	WnckWindow *window
 
-##  gboolean wnck_window_or_transient_demands_attention (WnckWindow *window)
+#endif
+
+#if WNCK_CHECK_VERSION (2, 12, 0)
+
+## gboolean wnck_window_needs_attention (WnckWindow *window);
 gboolean
-wnck_window_or_transient_demands_attention (window)
+wnck_window_needs_attention (window)
 	WnckWindow *window
 
-##  gboolean wnck_window_transient_is_active (WnckWindow *window)
+##  gboolean wnck_window_or_transient_needs_attention (WnckWindow *window)
 gboolean
-wnck_window_transient_is_active (window)
+wnck_window_or_transient_needs_attention (window)
 	WnckWindow *window
+
+##  gboolean wnck_window_transient_is_most_recently_activated (WnckWindow *window)
+gboolean
+wnck_window_transient_is_most_recently_activated (window)
+	WnckWindow *window
+
+##  WnckWindow * wnck_window_get_transient (WnckWindow *window)
+WnckWindow *
+wnck_window_get_transient (window)
+	WnckWindow *window
+
+##  void wnck_window_set_window_type (WnckWindow *window, WnckWindowType wintype)
+void
+wnck_window_set_window_type (window, wintype)
+	WnckWindow *window
+	WnckWindowType wintype
 
 #endif
 
@@ -425,7 +440,7 @@ wnck_create_window_action_menu (window)
 
 MODULE = Gnome2::Wnck::Window	PACKAGE = Gnome2::Wnck	PREFIX = wnck_
 
-#if !WNCK_CHECK_VERSION (2, 9, 91) /* FIXME: 2.10 */
+#if !WNCK_CHECK_VERSION (2, 10, 0)
 
 =for object Gnome2::Wnck::main
 

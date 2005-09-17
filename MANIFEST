@@ -2,13 +2,11 @@ ChangeLog
 LICENSE
 MANIFEST			This list of files
 MANIFEST.SKIP
-META.yml			Module meta-data (added by MakeMaker)
 Makefile.PL
 NEWS
 README
 Wnck.pm
 copyright.pod
-genmaps.pl
 maps
 perl-Gnome2-Wnck.spec.in
 t/Wnck.t
@@ -28,3 +26,4 @@ xs/WnckScreen.xs
 xs/WnckTasklist.xs
 xs/WnckWindow.xs
 xs/WnckWorkspace.xs
+META.yml                                 Module meta-data (added by MakeMaker)

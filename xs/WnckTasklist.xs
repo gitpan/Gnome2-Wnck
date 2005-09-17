@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckTasklist.xs,v 1.7 2004/08/10 18:17:13 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckTasklist.xs,v 1.9 2005/09/17 20:30:39 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -93,7 +93,7 @@ wnck_tasklist_get_size_hint_list (tasklist)
 	for (i = 0; i < n_elements; i++)
 		PUSHs (sv_2mortal (newSViv (list[i])));
 
-#if WNCK_CHECK_VERSION (2, 7, 91) /* FIXME: 2.8 */
+#if WNCK_CHECK_VERSION (2, 8, 0)
 
 ##  void wnck_tasklist_set_grouping (WnckTasklist *tasklist, WnckTasklistGroupingType grouping) 
 void
@@ -143,7 +143,7 @@ gint
 wnck_tasklist_get_minimum_height (tasklist)
 	WnckTasklist *tasklist
 
-#if WNCK_CHECK_VERSION(2,0,0)
+#if WNCK_CHECK_VERSION (2, 0, 0)
 
 ##  void wnck_tasklist_set_icon_loader (WnckTasklist *tasklist, WnckLoadIconFunction load_icon_func, void *data, GDestroyNotify free_data_func) 
 void
@@ -159,5 +159,15 @@ wnck_tasklist_set_icon_loader (tasklist, func, data=NULL)
 	                               wnck2perl_load_icon_function,
 	                               callback,
 	                               (GDestroyNotify) gperl_callback_destroy);
+
+#endif
+
+#if WNCK_CHECK_VERSION (2, 12, 0)
+
+##  void wnck_tasklist_set_button_relief (WnckTasklist *tasklist, GtkReliefStyle relief)
+void
+wnck_tasklist_set_button_relief (tasklist, relief)
+	WnckTasklist *tasklist
+	GtkReliefStyle relief
 
 #endif
