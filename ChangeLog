@@ -1,3 +1,14 @@
+2006/02/04	kaffeetisch
+
+	* NEWS, Wnck.pm: Version 0.12.
+
+2006/02/01	kaffeetisch
+
+	* t/WnckWindow.t, xs/WnckWindow.xs: Bind wnck_window_is_above,
+	wnck_window_make_above, and wnck_window_unmake_above.
+
+	* maps: Rearrange.
+
 2005/09/17	kaffeetisch
 
 	* NEWS, Wnck.pm: Version 0.11.

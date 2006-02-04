@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.16 2005/09/17 20:30:39 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.17 2006/02/01 20:08:40 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -424,6 +424,16 @@ void
 wnck_window_set_window_type (window, wintype)
 	WnckWindow *window
 	WnckWindowType wintype
+
+#endif
+
+#if WNCK_CHECK_VERSION (2, 13, 90) /* FIXME: 2.14 */
+
+gboolean wnck_window_is_above (WnckWindow *window);
+
+void wnck_window_make_above (WnckWindow *window);
+
+void wnck_window_unmake_above (WnckWindow *window);
 
 #endif
 

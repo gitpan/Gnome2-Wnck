@@ -3,14 +3,14 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.17 2005/09/17 20:30:38 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.18 2006/02/01 20:08:40 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
 }
 else {
   Gtk2 -> init();
-  plan tests => 42;
+  plan tests => 43;
 }
 
 ###############################################################################
@@ -22,7 +22,7 @@ $screen -> force_update();
 
 SKIP: {
   my $window = $screen -> get_active_window();
-  skip("no active window found", 42) unless (defined($window));
+  skip("no active window found", 43) unless (defined($window));
 
   my $workspace = $window -> get_workspace();
   my $have_workspaces = defined $workspace;
@@ -148,6 +148,15 @@ SKIP: {
   like($window -> get_icon_is_fallback(), $boolean);
   isa_ok($window -> get_actions(), "Gnome2::Wnck::WindowActions");
   isa_ok($window -> get_state(), "Gnome2::Wnck::WindowState");
+
+  SKIP: {
+    skip "new 2.14 stuff", 1
+      unless Gnome2::Wnck -> CHECK_VERSION(2, 13, 90);
+
+    $window -> make_above();
+    $window -> unmake_above();
+    ok(!$window -> is_above());
+  }
 
   # $window -> minimize();
   # $window -> unminimize();

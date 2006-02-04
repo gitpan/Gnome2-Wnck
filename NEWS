@@ -1,3 +1,8 @@
+Overview of changes in Gnome2::Wnck 0.12
+========================================
+
+* Add Gnome2::Wnck::Window::is_above, make_above, and unmake_above.
+
 Overview of changes in Gnome2::Wnck 0.11
 ========================================
 
