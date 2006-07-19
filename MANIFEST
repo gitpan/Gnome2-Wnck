@@ -14,6 +14,7 @@ t/WnckApplication.t
 t/WnckClassGroup.t
 t/WnckPager.t
 t/WnckScreen.t
+t/WnckSelector.t
 t/WnckTasklist.t
 t/WnckWindow.t
 t/WnckWorkspace.t
@@ -23,6 +24,7 @@ xs/WnckApplication.xs
 xs/WnckClassGroup.xs
 xs/WnckPager.xs
 xs/WnckScreen.xs
+xs/WnckSelector.xs
 xs/WnckTasklist.xs
 xs/WnckWindow.xs
 xs/WnckWorkspace.xs

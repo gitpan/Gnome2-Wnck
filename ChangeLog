@@ -1,3 +1,15 @@
+2006-07-19	kaffeetisch
+
+	* MANIFEST, Makefile.PL, NEWS, Wnck.pm, copyright.pod: Version
+	0.13.
+
+2006-07-19	kaffeetisch
+
+	* t/WnckSelector.t, xs/WnckSelector.xs: Wrap WnckSelector.
+
+	* t/WnckPager.t: Only run if WNCK_TEST_PAGER is set to avoid
+	changing the user's pager settings.
+
 2006/02/04	kaffeetisch
 
 	* NEWS, Wnck.pm: Version 0.12.

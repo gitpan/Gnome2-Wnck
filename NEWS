@@ -1,3 +1,10 @@
+Overview of changes in Gnome2::Wnck 0.13
+========================================
+
+* Add support for WnckSelector.
+* Don't run the pager test by default to avoid changing the user's current
+  pager settings.
+
 Overview of changes in Gnome2::Wnck 0.12
 ========================================
 
