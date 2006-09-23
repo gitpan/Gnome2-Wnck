@@ -15,7 +15,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.17 2006/02/01 20:08:40 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckWindow.xs,v 1.18 2006/09/23 16:02:10 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
@@ -332,6 +332,12 @@ wnck_window_get_state (window)
 void
 wnck_window_get_geometry (WnckWindow *window, OUTLIST int xp, OUTLIST int yp, OUTLIST int widthp, OUTLIST int heightp)
 
+#if WNCK_CHECK_VERSION (2, 16, 0)
+
+void wnck_window_set_geometry (WnckWindow *window, WnckWindowGravity gravity, WnckWindowMoveResizeMask geometry_mask, int x, int y, int width, int height);
+
+#endif
+
 ##  gboolean wnck_window_is_visible_on_workspace (WnckWindow *window, WnckWorkspace *workspace) 
 gboolean
 wnck_window_is_visible_on_workspace (window, workspace)
@@ -344,7 +350,7 @@ wnck_window_is_on_workspace (window, workspace)
 	WnckWindow *window
 	WnckWorkspace *workspace
 
-#if WNCK_CHECK_VERSION(2, 4, 0)
+#if WNCK_CHECK_VERSION (2, 4, 0)
 
 ##  gboolean wnck_window_is_in_viewport (WnckWindow *window, WnckWorkspace *workspace) 
 gboolean
@@ -427,7 +433,7 @@ wnck_window_set_window_type (window, wintype)
 
 #endif
 
-#if WNCK_CHECK_VERSION (2, 13, 90) /* FIXME: 2.14 */
+#if WNCK_CHECK_VERSION (2, 14, 0)
 
 gboolean wnck_window_is_above (WnckWindow *window);
 

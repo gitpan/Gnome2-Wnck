@@ -9,7 +9,9 @@ WNCK_TYPE_WORKSPACE			WnckWorkspace			GObject		Gnome2::Wnck::Workspace
 
 WNCK_TYPE_PAGER_DISPLAY_MODE		WnckPagerDisplayMode		GEnum		Gnome2::Wnck::PagerDisplayMode
 WNCK_TYPE_TASKLIST_GROUPING_TYPE	WnckTasklistGroupingType	GEnum		Gnome2::Wnck::TasklistGroupingType
+WNCK_TYPE_WINDOW_GRAVITY		WnckWindowGravity		GEnum		Gnome2::Wnck::WindowGravity
 WNCK_TYPE_WINDOW_TYPE			WnckWindowType			GEnum		Gnome2::Wnck::WindowType
 
 WNCK_TYPE_WINDOW_ACTIONS		WnckWindowActions		GFlags		Gnome2::Wnck::WindowActions
+WNCK_TYPE_WINDOW_MOVE_RESIZE_MASK	WnckWindowMoveResizeMask	GFlags		Gnome2::Wnck::WindowMoveResizeMask
 WNCK_TYPE_WINDOW_STATE			WnckWindowState			GFlags		Gnome2::Wnck::WindowState

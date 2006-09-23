@@ -3,7 +3,7 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.18 2006/02/01 20:08:40 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.19 2006/09/23 16:02:10 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
@@ -118,6 +118,13 @@ SKIP: {
   like($y, $number);
   like($width, $number);
   like($height, $number);
+
+  SKIP: {
+    skip "set_geometry", 0
+      unless Gnome2::Wnck -> CHECK_VERSION(2, 16, 0);
+
+    $window -> set_geometry("current", [], $x, $y, $width, $height);
+  }
 
   $window -> set_icon_geometry(10, 10, 100, 100);
 

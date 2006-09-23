@@ -1,3 +1,12 @@
+2006-09-23	kaffeetisch
+
+	* NEWS, Wnck.pm: Version 0.14.
+
+2006-09-23	kaffeetisch
+
+	* maps, t/WnckWindow.t, xs/WnckWindow.xs: Bind and test
+	wnck_window_set_geometry.
+
 2006-07-19	kaffeetisch
 
 	* MANIFEST, Makefile.PL, NEWS, Wnck.pm, copyright.pod: Version
