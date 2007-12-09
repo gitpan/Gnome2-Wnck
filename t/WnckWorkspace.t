@@ -3,14 +3,14 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWorkspace.t,v 1.11 2005/09/17 20:30:38 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWorkspace.t,v 1.12 2007/08/02 20:15:43 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
 }
 else {
   Gtk2 -> init();
-  plan tests => 7;
+  plan tests => 10;
 }
 
 ###############################################################################
@@ -23,28 +23,23 @@ $screen -> force_update();
 my $workspace = $screen -> get_workspace(0);
 
 SKIP: {
-  skip("couldn't get first workspace", 7) unless (defined($workspace));
+  skip("couldn't get first workspace", 10) unless (defined($workspace));
 
   is($workspace -> get_number(), 0);
   ok(defined($workspace -> get_name()));
 
- SKIP: {
-    skip("get_width, get_height, get_viewport_x, get_viewport_y and is_virtual are new in 2.3.1", 5)
-      unless (Gnome2::Wnck -> CHECK_VERSION(2, 4, 0));
+  like($workspace -> get_width(), qr/^\d+$/);
+  like($workspace -> get_height(), qr/^\d+$/);
+  like($workspace -> get_viewport_x(), qr/^\d+$/);
+  like($workspace -> get_viewport_y(), qr/^\d+$/);
+  ok(not $workspace -> is_virtual());
 
-    like($workspace -> get_width(), qr/^\d+$/);
-    like($workspace -> get_height(), qr/^\d+$/);
-    like($workspace -> get_viewport_x(), qr/^\d+$/);
-    like($workspace -> get_viewport_y(), qr/^\d+$/);
-    ok(not $workspace -> is_virtual());
-  }
+  $screen -> get_active_workspace() -> activate(time());
 
-  if (Gnome2::Wnck -> CHECK_VERSION(2, 10, 0)) {
-    $screen -> get_active_workspace() -> activate(time());
-  }
-  elsif (Gnome2::Wnck -> CHECK_VERSION(2, 0, 0)) {
-    $screen -> get_active_workspace() -> activate();
-  }
+  isa_ok($workspace -> get_screen(), 'Gnome2::Wnck::Screen');
+  ok(defined $workspace -> get_layout_row());
+  ok(defined $workspace -> get_layout_column());
+  $workspace -> get_neighbor('right'); # might be undef
 
   # $workspace -> change_name(...);
 }

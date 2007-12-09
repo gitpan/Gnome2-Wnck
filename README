@@ -28,4 +28,6 @@ Gnome2::Wnck depends on:
   ExtUtils::PkgConfig >= 1.03
   Glib >= 1.04
   Gtk2 >= 1.00
-  libwnck >= 2.12.0
+  libwnck >= 2.20.0
+
+If you need support for libwnck < 2.20.0, use Gnome2::Wnck 0.14.

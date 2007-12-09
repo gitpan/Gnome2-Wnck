@@ -15,18 +15,14 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckSelector.xs,v 1.1 2006/07/19 09:54:45 kaffeetisch Exp $
+ * $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/xs/WnckSelector.xs,v 1.2 2007/08/02 20:15:43 kaffeetisch Exp $
  */
 
 #include "wnck2perl.h"
 
 MODULE = Gnome2::Wnck::Selector	PACKAGE = Gnome2::Wnck::Selector	PREFIX = wnck_selector_
 
-#if WNCK_CHECK_VERSION (2, 10, 0)
-
-# GtkWidget *wnck_selector_new (WnckScreen *screen);
-GtkWidget *wnck_selector_new (class, WnckScreen *screen)
+# GtkWidget *wnck_selector_new (void);
+GtkWidget *wnck_selector_new (class)
     C_ARGS:
-	screen
-
-#endif
+	/* void */

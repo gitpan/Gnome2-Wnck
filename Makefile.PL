@@ -1,19 +1,22 @@
-#!/usr/bin/perl -w
-use 5.008;
+#!/usr/bin/perl
+
+BEGIN { require 5.008; }
+
 use strict;
+use warnings;
 
 use ExtUtils::MakeMaker;
 use Cwd;
 use File::Spec;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.14 2006/07/19 10:01:33 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.16 2007/12/09 14:09:56 kaffeetisch Exp $
 
 my %build_reqs = (
   'perl-ExtUtils-Depends'   => '0.20',
   'perl-ExtUtils-PkgConfig' => '1.03',
   'perl-Glib'               => '1.04',
   'perl-Gtk2'               => '1.00',
-  'Wnck'                    => '2.12.0',
+  'Wnck'                    => '2.20.0',
 );
 
 my %pm_reqs = (
@@ -40,7 +43,7 @@ unless (eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
 
 # --------------------------------------------------------------------------- #
 
-my %pkgcfg = ExtUtils::PkgConfig->find("libwnck-1.0");
+my %pkgcfg = ExtUtils::PkgConfig->find("libwnck-1.0 >= $build_reqs{Wnck}");
 
 mkdir 'build', 0777;
 
@@ -57,14 +60,6 @@ ExtUtils::PkgConfig->write_version_macros (
   "build/wnck2perl-version.h",
   "libwnck-1.0" => "WNCK",
 );
-
-# --------------------------------------------------------------------------- #
-
-# Mark 2.6.2.1 to work around an API change.  Would someone please stop the
-# madness?
-if ($pkgcfg{modversion} eq "2.6.2.1") {
-  $pkgcfg{cflags} .= " -DWNCK_I_AM_SO_INCREDIBLY_BROKEN";
-}
 
 # --------------------------------------------------------------------------- #
 

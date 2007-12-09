@@ -1,3 +1,71 @@
+2007-12-09  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* Makefile.PL
+	* README: Require libwnck >= 2.20.0.
+
+	* NEWS
+	* Wnck.pm: Version 0.15.
+
+2007-08-02	kaffeetisch
+
+	libwnck changed API in a way that doesn't appear to be manageable
+	in the bindings.  So we adapt and require libwnck >= 2.19.5.
+
+	* Makefile.PL
+	* README: Require libwnck >= 2.19.5.
+
+	* t/WnckPager.t
+	* xs/WnckPager.xs: wnck_pager_set_orientation now returns a
+	boolean.
+
+	* t/WnckScreen.t
+	* xs/WnckScreen.xs: Wrap wnck_screen_get_workspaces,
+	wnck_screen_get_window_manager_name, and wnck_screen_get_number.
+
+	* t/WnckSelector.t
+	* xs/WnckSelection.xs: wnck_selector_new doesn't take a screen
+	parameter anymore.
+
+	* t/WnckWindow.t
+	* xs/WnckWindow.xs: Wrap wnck_window_get_client_window_geometry,
+	wnck_window_set_sort_order, wnck_window_is_below,
+	wnck_window_make_below, and wnck_window_unmake_below.
+
+	* maps
+	* t/WnckWorkspace.t
+	* xs/WnckWorkspace.xs: Wrap wnck_workspace_get_screen,
+	wnck_workspace_get_layout_row, wnck_workspace_get_layout_column,
+	and wnck_workspace_get_neighbor.
+
+	* Makefile.PL
+	* wnck2perl.h
+	* t/WnckClassGroup.t
+	* t/WnckPager.t
+	* t/WnckScreen.t
+	* t/WnckSelector.t
+	* t/WnckTasklist.t
+	* t/WnckWindow.t
+	* t/WnckWorkspace.t
+	* xs/WnckApplication.xs
+	* xs/WnckClassGroup.xs
+	* xs/WnckPager.xs
+	* xs/WnckScreen.xs
+	* xs/WnckSelection.xs
+	* xs/WnckTasklist.xs
+	* xs/WnckWindow.xs
+	* xs/WnckWorkspace.xs: Get rid of now unneeded version checks and support
+	code for older libwnck versions.
+
+	* wnck2perl.h
+	* xs/WnckApplication.xs
+	* xs/WnckClassGroup.xs
+	* xs/WnckPager.xs
+	* xs/WnckScreen.xs
+	* xs/WnckSelection.xs
+	* xs/WnckTasklist.xs
+	* xs/WnckWindow.xs
+	* xs/WnckWorkspace.xs: Get rid of needless whitespace.
+
 2006-09-23	kaffeetisch
 
 	* NEWS, Wnck.pm: Version 0.14.

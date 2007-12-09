@@ -3,14 +3,14 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.19 2006/09/23 16:02:10 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckWindow.t,v 1.20 2007/08/02 20:15:43 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
 }
 else {
   Gtk2 -> init();
-  plan tests => 43;
+  plan tests => 46;
 }
 
 ###############################################################################
@@ -22,7 +22,7 @@ $screen -> force_update();
 
 SKIP: {
   my $window = $screen -> get_active_window();
-  skip("no active window found", 43) unless (defined($window));
+  skip("no active window found", 46) unless (defined($window));
 
   my $workspace = $window -> get_workspace();
   my $have_workspaces = defined $workspace;
@@ -52,14 +52,8 @@ SKIP: {
   # ok($window -> get_session_id());
   # ok($window -> get_session_id_utf8());
 
-  if (Gnome2::Wnck -> CHECK_VERSION(2, 10, 0)) {
-    $window -> activate(time());
-    $window -> activate_transient(time());
-  }
-  elsif (Gnome2::Wnck -> CHECK_VERSION(2, 0, 0)) {
-    $window -> activate();
-    $window -> activate_transient();
-  }
+  $window -> activate(time());
+  $window -> activate_transient(time());
 
   SKIP: {
     skip("windowmanager doesn't appear to support workspaces", 3)
@@ -67,50 +61,24 @@ SKIP: {
 
     ok($window -> is_on_workspace($window -> get_workspace()));
     ok($window -> is_visible_on_workspace($window -> get_workspace()));
-
-    skip("is_in_viewport is new in 2.4.0", 1)
-    unless (Gnome2::Wnck -> CHECK_VERSION(2, 4, 0));
-
     ok($window -> is_in_viewport($window -> get_workspace()));
   }
 
-  SKIP: {
-    skip("get_class_group is new in 2.6.0", 1)
-      unless (Gnome2::Wnck -> CHECK_VERSION(2, 6, 0));
-
-    isa_ok($window -> get_class_group(), "Gnome2::Wnck::ClassGroup");
-  }
-
-  SKIP: {
-    skip("get_class_group is new in 2.8", 1)
-      unless (Gnome2::Wnck -> CHECK_VERSION(2, 8, 0));
-
-    ok(defined($window -> get_window_type()));
-  }
+  isa_ok($window -> get_class_group(), "Gnome2::Wnck::ClassGroup");
+  ok(defined($window -> get_window_type()));
 
   my $number = qr/^\d+$/;
   my $boolean = qr/^(|1)$/;
 
-  SKIP: {
-    skip("new 2.12 stuff", 4)
-      unless (Gnome2::Wnck -> CHECK_VERSION(2, 12, 0));
+  $window -> set_window_type("normal");
 
-    $window -> set_window_type("normal");
+  my $transient = $window -> get_transient();
+  ok(not defined $transient || ref $transient eq "Gnome2::Wnck::Window");
 
-    my $transient = $window -> get_transient();
-    ok(not defined $transient || ref $transient eq "Gnome2::Wnck::Window");
-
-    like($window -> needs_attention(), $boolean);
-    like($window -> or_transient_needs_attention(), $boolean);
-    like($window -> transient_is_most_recently_activated(), $boolean);
-  }
-
-  SKIP: {
-    skip("get_class_group is new in 2.10", 1)
-      unless (Gnome2::Wnck -> CHECK_VERSION(2, 10, 0));
-
-    like($window -> get_sort_order(), $number);
-  }
+  like($window -> needs_attention(), $boolean);
+  like($window -> or_transient_needs_attention(), $boolean);
+  like($window -> transient_is_most_recently_activated(), $boolean);
+  like($window -> get_sort_order(), $number);
 
   my ($x, $y, $width, $height) = $window -> get_geometry();
 
@@ -119,12 +87,7 @@ SKIP: {
   like($width, $number);
   like($height, $number);
 
-  SKIP: {
-    skip "set_geometry", 0
-      unless Gnome2::Wnck -> CHECK_VERSION(2, 16, 0);
-
-    $window -> set_geometry("current", [], $x, $y, $width, $height);
-  }
+  $window -> set_geometry("current", [], $x, $y, $width, $height);
 
   $window -> set_icon_geometry(10, 10, 100, 100);
 
@@ -139,15 +102,10 @@ SKIP: {
   like($window -> is_pinned(), $boolean);
   like($window -> is_active(), $boolean);
 
-  SKIP: {
-    skip("is_fullscreen, set_fullscreen, demands_attention and is_most_recently_activated are new in 2.8", 2)
-      unless (Gnome2::Wnck -> CHECK_VERSION(2, 8, 0));
+  like($window -> is_fullscreen(), $boolean);
+  $window -> set_fullscreen($window -> is_fullscreen());
 
-    like($window -> is_fullscreen(), $boolean);
-    $window -> set_fullscreen($window -> is_fullscreen());
-
-    like($window -> is_most_recently_activated(), $boolean);
-  }
+  like($window -> is_most_recently_activated(), $boolean);
 
   $window -> set_skip_pager($window -> is_skip_pager());
   $window -> set_skip_tasklist($window -> is_skip_tasklist());
@@ -156,14 +114,19 @@ SKIP: {
   isa_ok($window -> get_actions(), "Gnome2::Wnck::WindowActions");
   isa_ok($window -> get_state(), "Gnome2::Wnck::WindowState");
 
-  SKIP: {
-    skip "new 2.14 stuff", 1
-      unless Gnome2::Wnck -> CHECK_VERSION(2, 13, 90);
+  $window -> make_above();
+  $window -> unmake_above();
+  ok(!$window -> is_above());
 
-    $window -> make_above();
-    $window -> unmake_above();
-    ok(!$window -> is_above());
-  }
+  $window -> make_below();
+  $window -> unmake_below();
+  ok(!$window -> is_below());
+
+  ($x, $y, $width, $height) = $window -> get_client_window_geometry();
+  ok(defined $x && defined $y && defined $width && defined $height);
+
+  $window -> set_sort_order(23);
+  is($window -> get_sort_order(), 23);
 
   # $window -> minimize();
   # $window -> unminimize();

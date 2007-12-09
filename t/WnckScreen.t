@@ -3,14 +3,14 @@ use strict;
 use Test::More;
 use Gnome2::Wnck;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckScreen.t,v 1.10 2004/10/25 18:50:28 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/t/WnckScreen.t,v 1.11 2007/08/02 20:15:43 kaffeetisch Exp $
 
 unless (Gtk2 -> init_check()) {
   plan skip_all => "Couldn't initialize Gtk2";
 }
 else {
   Gtk2 -> init();
-  plan tests => 14;
+  plan tests => 16;
 }
 
 ###############################################################################
@@ -44,9 +44,6 @@ SKIP: {
 }
 
 SKIP: {
-  skip("get_previously_active_window is new in 2.8", 1)
-    unless (Gnome2::Wnck -> CHECK_VERSION(2, 8, 0));
-
   my $prev_window = $screen -> get_previously_active_window();
   skip("no previously active window found", 1) unless (defined($prev_window));
   isa_ok($prev_window, "Gnome2::Wnck::Window");
@@ -65,8 +62,6 @@ SKIP: {
 }
 
 SKIP: {
-  skip("get_workspace_count and get_showing_desktop are new in 2.0.0", 2)
-    unless (Gnome2::Wnck -> CHECK_VERSION(2, 0, 0));
   like($screen -> get_workspace_count(), qr/^\d+$/);
   like($screen -> get_showing_desktop(), qr/^(?:1|)$/);
   # $screen -> toggle_showing_desktop(1);
@@ -81,3 +76,10 @@ like($screen -> net_wm_supports("_NET_WM_PID"), qr/^(?:1|)$/);
 # $screen -> move_viewport(23, 42);
 # $screen -> try_set_workspace_layout(...);
 # $screen -> release_workspace_layout(...);
+
+my @workspaces = $screen -> get_workspaces();
+isa_ok($workspaces[0], 'Gnome2::Wnck::Workspace');
+
+$screen -> get_window_manager_name(); # might be undef
+
+ok(defined $screen -> get_number());

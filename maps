@@ -7,6 +7,7 @@ WNCK_TYPE_SCREEN			WnckScreen			GObject		Gnome2::Wnck::Screen
 WNCK_TYPE_WINDOW			WnckWindow			GObject		Gnome2::Wnck::Window
 WNCK_TYPE_WORKSPACE			WnckWorkspace			GObject		Gnome2::Wnck::Workspace
 
+WNCK_TYPE_MOTION_DIRECTION		WnckMotionDirection		GEnum		Gnome2::Wnck::MotionDirection
 WNCK_TYPE_PAGER_DISPLAY_MODE		WnckPagerDisplayMode		GEnum		Gnome2::Wnck::PagerDisplayMode
 WNCK_TYPE_TASKLIST_GROUPING_TYPE	WnckTasklistGroupingType	GEnum		Gnome2::Wnck::TasklistGroupingType
 WNCK_TYPE_WINDOW_GRAVITY		WnckWindowGravity		GEnum		Gnome2::Wnck::WindowGravity

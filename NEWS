@@ -1,3 +1,18 @@
+Overview of changes in Gnome2::Wnck 0.15
+========================================
+
+* Require libwnck >= 2.20.0 due to API changes that can't be worked around.
+* Adapt to API changes:
+  - wnck_pager_set_orientation now returns a boolean
+  - wnck_selector_new doesn't take a screen parameter anymore
+* Wrap new API:
+  - wnck_screen_get_workspaces, wnck_screen_get_window_manager_name, and
+    wnck_screen_get_number
+  - wnck_window_get_client_window_geometry, wnck_window_set_sort_order,
+    wnck_window_is_below, wnck_window_make_below, and wnck_window_unmake_below
+  - wnck_workspace_get_screen, wnck_workspace_get_layout_row,
+    wnck_workspace_get_layout_column, and wnck_workspace_get_neighbor
+
 Overview of changes in Gnome2::Wnck 0.14
 ========================================
 
