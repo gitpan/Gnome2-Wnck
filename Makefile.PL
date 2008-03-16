@@ -9,12 +9,12 @@ use ExtUtils::MakeMaker;
 use Cwd;
 use File::Spec;
 
-# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.16 2007/12/09 14:09:56 kaffeetisch Exp $
+# $Header: /cvsroot/gtk2-perl/gtk2-perl-xs/Gnome2-Wnck/Makefile.PL,v 1.17 2008/03/16 12:58:16 kaffeetisch Exp $
 
 my %build_reqs = (
   'perl-ExtUtils-Depends'   => '0.20',
   'perl-ExtUtils-PkgConfig' => '1.03',
-  'perl-Glib'               => '1.04',
+  'perl-Glib'               => '1.180',
   'perl-Gtk2'               => '1.00',
   'Wnck'                    => '2.20.0',
 );
@@ -73,6 +73,9 @@ $wnck->add_typemaps(map {File::Spec->catfile(cwd(), $_)} 'build/wnck2perl.typema
 $wnck->install(qw(wnck2perl.h build/wnck2perl-autogen.h build/wnck2perl-version.h));
 $wnck->save_config('build/IFiles.pm');
 
+my $configure_requires =
+  Glib::MakeHelper->get_configure_requires_yaml(%pm_reqs);
+
 WriteMakefile(
   NAME          => 'Gnome2::Wnck',
   VERSION_FROM  => 'Wnck.pm', # finds $VERSION
@@ -80,7 +83,10 @@ WriteMakefile(
   XSPROTOARG    => '-noprototypes',
   MAN3PODS      => \%pod_files,
   PREREQ_PM     => \%pm_reqs,
+
   $wnck->get_makefile_vars,
+
+  EXTRA_META    => $configure_requires,
 );
 
 sub MY::postamble {

@@ -1,3 +1,19 @@
+2008-03-16  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* NEWS
+	* README
+	* Wnck.pm: Version 0.16.
+
+2008-03-16  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* Makefile.PL: Announce our Makefile.PL-time dependencies via
+	META.yml's configure_requires key.
+
+2007-12-29  Torsten Schoenfeld  <kaffeetisch@gmx.de>
+
+	* Wnck.pm (SYNPOSIS): Add use Gtk2 -init; to the example code so
+	it doesn't die with a segmentation fault.
+
 2007-12-09  Torsten Schoenfeld  <kaffeetisch@gmx.de>
 
 	* Makefile.PL
